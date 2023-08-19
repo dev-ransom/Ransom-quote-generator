@@ -20,11 +20,20 @@ function randomQuote(){
 
 soundBtn.addEventListener('click', ()=>{
 // console.log('sounded')
-let utterance = new SpeechSynthesisUtterance(`${quoteText.innerText}`);
+let utterance = new SpeechSynthesisUtterance(`${quoteText.innerText} by ${authorName.innerText}`)
 speechSynthesis.speak(utterance)
-let utterance2 = new SpeechSynthesisUtterance(`${authorName.innerText}`);
-speechSynthesis.speak(utterance2)
+
 });
 
-quoteBtn.addEventListener('click', randomQuote);
 
+copyBtn.addEventListener('click', ()=>{
+    navigator.clipboard.writeText(`${quoteText.innerText}`);
+    
+})
+
+twitterBtn.addEventListener('click', ()=>{
+    let tweetUrl = `https://twitter.com/intent/tweet?url=${quoteText.innerText}`;
+    console.log(window.open(tweetUrl, "_blank"));
+})
+
+quoteBtn.addEventListener('click', randomQuote);
